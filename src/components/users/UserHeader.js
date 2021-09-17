@@ -1,5 +1,7 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 import { FaUsersCog } from 'react-icons/fa';
 import { GiRollingDiceCup } from 'react-icons/gi';
 import { GrUserSettings } from 'react-icons/gr';
@@ -7,9 +9,22 @@ import { HiDownload } from 'react-icons/hi';
 import { MdPersonAdd } from 'react-icons/md';
 import { RiDashboardLine } from 'react-icons/ri';
 import { VscGroupByRefType } from 'react-icons/vsc';
+import { api_url } from '../../App';
+import AddUserModel from '../../Models/User/AddUserModel';
 import "../../scss/dashboard/User/UserHeader.scss";
 
 const UserHeader = () => {
+    // Add User Modal Functionality
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    // React Hook from Functionality
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        axios.post(`${api_url}/api/users`, data).then(result => { console.log(result.data.data); }).catch(error => { console.log(error) })
+    };
+
+
     return (
         <section id="user_header">
 
@@ -73,9 +88,12 @@ const UserHeader = () => {
                     <Button className="pdf_btn" variant="outline-success"><HiDownload /> Download PDF</Button>
                 </div>
                 <div className="">
-                    <Button className="add_user_btn" ><MdPersonAdd /> Add User</Button>
+                    <Button className="add_user_btn" onClick={() => handleShow()} ><MdPersonAdd /> Add User</Button>
                 </div>
             </div>
+
+            {/* Add user Model  */}
+            <AddUserModel show={show} handleClose={handleClose} handleSubmit={handleSubmit} onSubmit={onSubmit} register={register} errors={errors} />
 
         </section>
     );

@@ -51,7 +51,7 @@ const UserTable = () => {
                             <td>{info.email}</td>
                             <td>{info.createdAt}</td>
                             <td className="text-success">View Details</td>
-                            <td> <span className="text-success"><MdModeEdit /> Edit</span>  <span className="text-danger ms-3" onClick={() => handleDelete(info._id)}><RiDeleteBin6Line /> Delete</span> </td>
+                            <td> <span className="text-success edit_btn"><MdModeEdit /> Edit</span>  <span className="text-danger ms-3 delete_btn" onClick={() => handleDelete(info._id)}><RiDeleteBin6Line /> Delete</span> </td>
                         </tr>)
                     }
 
