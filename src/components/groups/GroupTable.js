@@ -35,7 +35,7 @@ const GroupTable = () => {
                             <td>{info.groupName}</td>
                             <td>{info.createdAt}</td>
                             <td className="text-success">View Details</td>
-                            <td> <span className="text-success"><MdModeEdit /> Edit</span>  <span className="text-danger ms-3"><RiDeleteBin6Line /> Delete</span> </td>
+                            <td> <span className="text-success edit_btn"><MdModeEdit /> Edit</span>  <span className="text-danger ms-3 delete_btn"><RiDeleteBin6Line /> Delete</span> </td>
                         </tr>)
                     }
 
